@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math with Justin</title>
+<meta name="description" content="Private algebra and geometry tutoring in San Francisco and online. One-on-one help for middle and high school students.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column on graph paper. Hero = a worked problem in the margin. Then who, what, how, price, contact. */
+:root {
+  --paper: #fbfcfe;
+  --grid: #dfe7f3;
+  --ink: #17233a;
+  --muted: #55627a;
+  --pencil: #f2b705;
+  --pencil-ink: #6b4e00;
+  --line: #c9d4e6;
+  --card: #ffffff;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121a28; --grid: #1c2638; --ink: #e9eef7; --muted: #a3b0c6;
+    --pencil: #f5c638; --pencil-ink: #f5c638; --line: #2c3a52; --card: #172133;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121a28; --grid: #1c2638; --ink: #e9eef7; --muted: #a3b0c6;
+  --pencil: #f5c638; --pencil-ink: #f5c638; --line: #2c3a52; --card: #172133;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 64px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.4rem, 7vw, 4.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; max-width: 62ch; }
+.label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hl { background: linear-gradient(transparent 58%, var(--pencil) 58%, var(--pencil) 88%, transparent 88%); padding-inline: 2px; color: inherit; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.hero > * { min-width: 0; }
+.hero .lede { font-size: 1.2rem; color: var(--muted); margin-top: 18px; }
+.hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { font-family: var(--display); font-weight: 700; font-size: 1rem; text-decoration: none; padding: 12px 20px; border-radius: 6px; border: 2px solid var(--ink); color: var(--ink); background: var(--card); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:focus-visible { outline: 3px solid var(--pencil); outline-offset: 2px; }
+.worked {
+  font-family: var(--mono); font-size: 0.95rem; background: var(--card);
+  border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px;
+  transform: rotate(-1.2deg); box-shadow: 0 10px 24px rgba(23,35,58,0.08);
+  display: grid; gap: 6px;
+}
+.worked .step { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.worked .note { color: var(--muted); font-size: 0.8rem; }
+.worked .ans { border-top: 2px solid var(--ink); padding-top: 8px; margin-top: 6px; font-weight: 600; }
+.worked .ans span { background: var(--pencil); color: #17233a; padding: 0 4px; }
+
+/* sections */
+.section { display: grid; gap: 22px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.item { display: grid; gap: 8px; align-content: start; padding-top: 14px; border-top: 2px solid var(--ink); }
+.item p { color: var(--muted); font-size: 1rem; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.about > * { min-width: 0; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.facts li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+.facts li span:first-child { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 3px; }
+
+/* price */
+.price { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; background: var(--card); border: 2px solid var(--ink); border-radius: 6px; padding: 28px; }
+.price .num { font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 9vw, 4.5rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.price .num small { font-family: var(--mono); font-size: 1rem; font-weight: 400; color: var(--muted); }
+.price ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; flex: 1 1 260px; min-width: 0; }
+
+
+.contact { display: grid; gap: 14px; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.contact-row .btn { overflow-wrap: anywhere; }
+footer { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 760px) {
+  .hero, .about { grid-template-columns: 1fr; }
+  .grid3 { grid-template-columns: 1fr; }
+  .worked { transform: none; }
+  .facts li { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-2px); }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <section class="hero">
+    <div>
+      <div class="label">Private math tutoring · San Francisco &amp; online</div>
+      <h1 style="margin-top:12px">Math that <span class="hl">finally clicks</span>.</h1>
+      <p class="lede">One-on-one help for middle and high school students. Patient, clear, and built around how your kid thinks.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">Book a first session</a>
+        <a class="btn" href="#price">See pricing</a>
+      </div>
+    </div>
+    <div class="worked" aria-label="A worked math example">
+      <div class="label">Tuesday, 4:00pm</div>
+      <div class="step"><span>3(x − 2) + 5 = 2x + 7</span></div>
+      <div class="step"><span>3x − 6 + 5 = 2x + 7</span><span class="note">distribute</span></div>
+      <div class="step"><span>3x − 1 = 2x + 7</span><span class="note">combine</span></div>
+      <div class="step"><span>x = 8</span><span class="note">subtract 2x, add 1</span></div>
+      <div class="ans">check: 3(6) + 5 = 23 = 2(8) + 7 <span>✓</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">What we work on</div>
+    <div class="grid3">
+      <div class="item">
+        <h3>Keeping up</h3>
+        <p>Homework help and review so your student stays on track in class.</p>
+      </div>
+      <div class="item">
+        <h3>Catching up</h3>
+        <p>Find the gaps from past years and fill them, step by step.</p>
+      </div>
+      <div class="item">
+        <h3>Test prep</h3>
+        <p>Practice and strategy before unit tests and finals.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about">
+    <div style="display:grid; gap:16px;">
+      <div class="label">About me</div>
+      <h2>Hi, I'm Justin.</h2>
+      <p>I've taught kids about money and math since 2013. I founded Startup Smartup, a K-12 entrepreneurship program, and PFL Academy, a financial literacy curriculum used in schools.</p>
+      <p>I studied international business and finance and worked at Morgan Stanley. Now I help students see that math is a tool they'll actually use.</p>
+    </div>
+    <ul class="facts">
+      <li><span>Teaching</span><span>Students since 2013</span></li>
+      <li><span>Tutoring</span><span>Years with a current student, ongoing</span></li>
+      <li><span>Background</span><span>B.S. International Business &amp; Finance</span></li>
+      <li><span>Where</span><span>In person in SF, or online</span></li>
+    </ul>
+  </section>
+
+  <section class="section" id="price">
+    <div class="label">Pricing</div>
+    <div class="price">
+      <div class="num">$120<small> / 60 min</small></div>
+      <ul>
+        <li>One-on-one, never a group</li>
+        <li>After school on weekdays, plus weekends</li>
+        <li>Short note to parents after each session</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="label">Get started</div>
+    <h2>Book a first session</h2>
+    <p>Text or email me. Tell me your student's grade and what class they're in. I'll reply within a day.</p>
+    <div class="contact-row">
+      <a class="btn primary" href="mailto:justin@mathwithjustin.com">justin@mathwithjustin.com</a>
+      <a class="btn" href="tel:+14159902754">(415) 990-2754</a>
+    </div>
+  </section>
+
+  <footer>Math with Justin · San Francisco</footer>
+</main>
+</body>
+</html>
