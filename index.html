@@ -85,7 +85,7 @@ p { margin: 0; max-width: 62ch; }
 .item p { color: var(--muted); font-size: 1rem; }
 .about { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .about > * { min-width: 0; }
-.about img { width: 100%; max-width: 220px; height: auto; border-radius: 8px; display: block; }
+.about img { width: 100%; max-width: 360px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 8px; }
 .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .facts li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
 .facts li span:first-child { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 3px; }
